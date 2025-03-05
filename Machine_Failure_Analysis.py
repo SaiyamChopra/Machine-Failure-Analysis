@@ -5,7 +5,6 @@ import plotly.express as px
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.ensemble import IsolationForest
-from sklearn.preprocessing import MinMaxScaler
 
 # 🏷 **Title of Dashboard**
 st.title("📢 Anomaly Detection Machine Learning")
@@ -23,15 +22,10 @@ def load_and_preprocess_data():
     # Handle missing values
     df.fillna(df.median(numeric_only=True), inplace=True)
 
-    # Normalize sensor readings (If required)
-    scaler = MinMaxScaler()
-    numeric_cols = df.select_dtypes(include=['number']).columns
-    df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
-
     # Ensure all machine types exist after encoding
     machine_types = ["Drill", "Mill", "Lathe"]
     df = pd.get_dummies(df, columns=["Machine_Type"], drop_first=False)
-    
+
     for m in machine_types:
         col_name = f"Machine_Type_{m}"
         if col_name not in df.columns:
@@ -104,10 +98,8 @@ with col2:
     st.plotly_chart(fig, use_container_width=True)
 
 st.subheader("📌 Failure Risk Analysis")
-df_bar = df.copy()
-df_bar["Color"] = df_bar["Failure_Risk"].map({0: "blue", 1: "red"})
-fig = px.bar(df_bar, x=df_bar.index, y=selected_data, color="Color",
-             title="Failure Risk Highlighted", color_discrete_map={"blue": "blue", "red": "red"})
+fig = px.bar(df, x=df.index, y=selected_data, color="Failure_Status",
+             title="Failure Risk Highlighted", color_discrete_map={"No Failure": "blue", "Failure Risk": "red"})
 st.plotly_chart(fig, use_container_width=True)
 
 # Correlation Heatmap
@@ -147,4 +139,4 @@ if not machine_df.empty:
     plt.savefig("anomaly_histograms.png")
     st.image("anomaly_histograms.png", use_container_width=True)
 
-st.write("✅ Interactive Machine Failure Analysis Dashboard")
+st.write("✅ Interactive Machine Failure Analysis Dashboard")  
