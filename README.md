@@ -7,7 +7,8 @@ This project is a Streamlit-based Machine Failure Analysis Dashboard that uses A
 ▶️YouTube
 https://youtu.be/bNJy7_tkSCY?si=2s05bC2hAC0r2ldC
 
-🚀 Features
+
+🚀 Features:
 
 📊 Interactive Data Visualization
 
