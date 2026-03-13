@@ -5,8 +5,7 @@
 This project is a Streamlit-based Machine Failure Analysis Dashboard that uses Anomaly Detection and Failure Risk Classification techniques to analyze sensor data from different machine types. The dashboard provides interactive visualizations, anomaly detection insights, and failure risk predictions to help prevent unexpected failures.
 
 ▶️YouTube
-https://youtu.be/bNJy7_tkSCY?si=2tlAlGUtrbC0jKEr
-
+https://youtu.be/bNJy7_tkSCY?si=2s05bC2hAC0r2ldC
 🚀 Features
 
 📊 Interactive Data Visualization
